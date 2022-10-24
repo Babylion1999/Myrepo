@@ -9,4 +9,5 @@ module.exports = {
     col_users: 'users',
     col_articles: 'articles',
     col_categories: 'categories',
+    col_settings: 'settings'
 };
