@@ -26,6 +26,7 @@ module.exports = {
     },
     listItemsFrontend:(params = null, options = null)=>{
         
+        
         if(options.task=='list-artical'){
             return MainModel
             .find({status: 'active',special:'active'})
@@ -39,6 +40,19 @@ module.exports = {
             .select('name category.name thumb')
             .sort({ordering:'asc'})
         }
+        if (options.task == 'items-in-category'){
+            select = 'name created.user_name created.time category.name thumb content';
+            find = {status:'active', 'category.id': params.id};
+            sort = {'created.time': 'desc'};
+            return MainModel
+            .find(find).select(select).sort(sort);   
+        }
+        if (options.task == 'nomal'){
+            
+            return MainModel
+            .find({}).select('name created.user_name created.time category.id category.name thumb').limit(3).sort(''); 
+        }
+
             
         
        

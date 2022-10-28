@@ -3,17 +3,22 @@ var router = express.Router();
 
 const folderView	 = __path_views_blog + 'pages/post/';
 const layoutBlog	 = __path_views_blog + 'frontend_post';
+const ArticlesModel 	= require(__path_services + `backend/articles`);
 const CategoriesModel = require(__path_services + `backend/categories`);
-
+const ParamsHelpers = require(__path_helpers + 'params');
 
 
 
 
 /* GET home page. */
-router.get('/', async function(req, res, next) {
+router.get('(/:id)?', async function(req, res, next) {
 
   let itemsCategory=[];
-
+  let idArticle 		= ParamsHelpers.getParam(req.params, 'id', '');
+  let itemArticle		= {};
+  console.log(idArticle);
+  // Article Info
+	await ArticlesModel.listItemsFrontend(null, {task: 'nomal'} ).then( (item) => { itemArticle = item; });
   await CategoriesModel.listItemsFrontend(null, {task: 'items-in-menu'}).then((items)=>{
     itemsCategory=items;
     
@@ -28,7 +33,8 @@ router.get('/', async function(req, res, next) {
     paginationArea: false,
     sildebar:false,
     sildebarFilter: true,
-    itemsCategory
+    itemsCategory,
+    idArticle
   });
 });
 

@@ -29,16 +29,12 @@ const folderUpload 	= `uploads/${collection}/`;
 							<div class="tab-content" id="custom-tabs-one-tabContent">
 								<div class="tab-pane fade show" id="header-settings" role="tabpanel"
 									aria-labelledby="header-settings-tab">
-
 									<div class="form-group row">
 										<label for="logoHeader" class="col-sm-2 col-form-label text-sm-right required">Logo</label>
 										<div class="col-xs-12 col-sm-8">
                                             <input type="file" name="logoHeader" class="form-control form-control-sm" >
                                         </div>
 									</div>
-
-									
-
 								</div>
 								<div class="tab-pane fade" id="footer-settings" role="tabpanel"
 									aria-labelledby="footer-settings-tab">
@@ -106,7 +102,7 @@ const folderUpload 	= `uploads/${collection}/`;
 		ClassicEditor
 			.create( document.querySelector( '#editor' ) )
 			.catch( error => {
-							console.error( error );
+				console.error( error );
 			} );
 			
 			imgInp.onchange = evt => {

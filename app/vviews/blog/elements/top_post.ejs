@@ -33,7 +33,7 @@
                             <img src="<%= pathUpload + itemsTopPost[0].thumb %>" alt="">
                             <div class="trend-top-cap">
                                 <span><%= itemsTopPost[0].category.name %></span>
-                                <h2><a href="details.html"><%= itemsTopPost[0].name %></a></h2>
+                                <h2><a href="/articles/<%= itemsTopPost[0].id %>"><%= itemsTopPost[0].name %></a></h2>
                                 <ul class="d-flex ">
                                     <li>
                                         
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="trend-bottom-cap">
                                     <div class="d-flex justify-content-between"><span class="color<%= i %>"><%= itemsTopPost[i].category.name %></span><a href="#" class="text-dark"><span class="lnr lnr-calendar-full"style="background: none;font-size: 16px;color: #000;"></span><%= moment(itemsTopPost[i].created.time).format("MMM Do YY") %></a></div>
-                                    <h4><a href="details.html"><%= itemsTopPost[i].name %></a></h4>
+                                    <h4><a href="/articles/<%= itemsTopPost[i].id %>"><%= itemsTopPost[i].name %></a></h4>
                                 </div>
                             </div>
                             </div>
@@ -83,7 +83,7 @@
                         </div>
                         <div class="trand-right-cap col-7">
                             <span class="color<%= i-4 %>"><%= itemsTopPost[i].category.name %></span>
-                            <h4><a href="details.html"><%= itemsTopPost[i].name %></a></h4>
+                            <h4><a href="/articles/<%= itemsTopPost[i].id %>"><%= itemsTopPost[i].name %></a></h4>
                         </div>
                     </div>
                     <% } %>

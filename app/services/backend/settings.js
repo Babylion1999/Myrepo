@@ -24,6 +24,13 @@ module.exports = {
             .limit(pagination.totalItemsPerPage)
     
     },
+    getLogo:(param=null,options =null)=>{
+        if(options.task=='get-logo-header'){
+            return MainModel
+            .find({})
+            .select('logoHeader')
+        }
+    },
     listItemsFrontend:(params = null, options = null)=>{
         
         if(options.task=='list-artical'){
@@ -60,7 +67,6 @@ module.exports = {
                 user_name: "0",
                 time: Date.now(),
             },
-    
         };
         if(Array.isArray(cids)) {
             for (let index = 0; index < cids.length; index++) {
