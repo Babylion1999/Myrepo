@@ -3,36 +3,28 @@
     <head>
        <% include ./elements/head %>
    </head>
-
    <body>
-       
-    
-
-   
         <% include ./elements/header %>
-    
-
     <main>
     <!-- Trending Area Start -->
     <% if(top_post== true){ %>
         <% include ./elements/top_post %>
     <% } %>
-                       
-    
     <!-- Trending Area End -->
-    <!--   Weekly-News start -->
-    <% if(top_weeklyNews== true){ %>
-        <% include ./elements/top_weekly-news %>
-    <% } %>    
-    <!-- End Weekly-News -->
+    
    <!-- Whats New Start -->
     <section class="whats-news-area pt-50 pb-20">
         <div class="container">
             <div class="row">
             <%- body %>
+            
             <% if(sildebar== true){ %>
                 <% include ./elements/sildebar %>
-            <% } %>  
+            <% } %> 
+            <% if(sildebarFilter== true){ %>
+                <% include ./elements/sildebar-filter %>
+            <% } %>   
+           
             </div>
         </div>
     </section>
@@ -42,28 +34,9 @@
         <% include ./elements/bottom_weekly-news %>
     <% } %>       
     <!-- End Weekly-News -->
-    <!-- Start Youtube -->
-    <% if(youtubeArea== true){ %>
-        <% include ./elements/youtube-area %>
-    <% } %>  
-    <!-- End Start youtube -->
-    <!--  Recent Articles start -->
-    <% if(recentArticles== true){ %>
-        <% include ./elements/recent-articles %>
-    <% } %>     
-    <!--Recent Articles End -->
-    <!--Start pagination -->
-    <% if(paginationArea== true){ %>
-        <% include ./elements/pagination-area %>
-    <% } %>  
-    <!-- End pagination  -->
-    </main>
-    
-  <% include ./elements/footer %>
-   
+    </main>  
+  <% include ./elements/footer %> 
 	<!-- JS here -->
-	
 		<% include ./elements/script %>
-        
     </body>
 </html>

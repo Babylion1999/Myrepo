@@ -19,6 +19,7 @@ router.get('/', async function(req, res, next) {
   res.render(`${folderView}index`, { 
     layout   : layoutBlog,
     top_post : false,
+    sildebarFilter: false,
     top_weeklyNews: false,
     bottom_weeklyNews: false,
     youtubeArea: false,

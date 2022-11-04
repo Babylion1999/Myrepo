@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const util = require('util');
 const fs = require('fs');
+const {body, validationResult} = require('express-validator');
 const changeName = "articles";
 const MainModel 	= require(__path_services + `backend/${changeName}`);
 const CategoriesModel = require(__path_services + `backend/categories`);
@@ -56,7 +57,7 @@ router.get('(/status/:status)?', async function(req, res, next) {
 	if(keyword !== '') objWhere.name = new RegExp(keyword, 'i');
 	
 	MainModel.listItems(objWhere,pagination,categoryItems,sort,categoryID).then((items)=>{
-		console.log(categoryID);
+		
 		res.render(`${folderView}list`, { pageTitle   : 'itemsPage ',
       massage: title,
       items,
@@ -136,8 +137,7 @@ router.post('/change-ordering', (req, res, next) => {
 	 
 	let cids 		= req.body.cid;
 	let orderings 	= req.body.ordering;
-	console.log(cids);
-	console.log(orderings);
+	
 	MainModel.changeOrdering(orderings,cids,null).then((result)=>{
 		// req.flash('success', notify.CHANGE_ORDERING_SUCCESS, false);
 		// res.redirect(linkIndex);

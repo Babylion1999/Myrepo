@@ -24,7 +24,7 @@ module.exports = {
             .limit(pagination.totalItemsPerPage)
     
     },
-    listItemsFrontend:(params = null, options = null)=>{
+    listItemsFrontend: async(params = null, options = null, limit_options=null,pagination=null)=>{
         
         
         if(options.task=='list-artical'){
@@ -39,25 +39,39 @@ module.exports = {
             .find({status: 'active'})
             .select('name category.name thumb')
             .sort({ordering:'asc'})
+            .limit(limit_options)
         }
         if (options.task == 'items-in-category'){
             select = 'name created.user_name created.time category.name thumb content';
             find = {status:'active', 'category.id': params.id};
             sort = {'created.time': 'desc'};
-            return MainModel
-            .find(find).select(select).sort(sort);   
-        }
-        if (options.task == 'nomal'){
+            await MainModel.count(find).then( (data) => {
+                pagination.totalItems = data;
+        
+            });
+            
             
             return MainModel
-            .find({}).select('name created.user_name created.time category.id category.name thumb').limit(3).sort(''); 
+            .find(find).select(select).sort(sort)
+            .skip((pagination.currentPage-1) * pagination.totalItemsPerPage)
+            .limit(pagination.totalItemsPerPage) 
+        } 
+        if (options.task == 'items-news'){
+            select = 'name created.user_name created.time category.name category.id  thumb content';
+            find = {status:'active'};
+            sort = {'created.time': 'desc'};   
+            return MainModel
+            .find(find).select(select).sort(sort).limit(6); 
         }
-
-            
-        
-       
-        
     },
+    // -----it does not fix
+    getItemsFrontend:   async (id, options = null) => {
+         await MainModel.findById(id).then((result)=>{return result}).catch((errors)=>{
+            return;
+          });
+         
+    },
+    // -----it does not fix
     changeStatus:(id,data)=>{
         return MainModel.updateOne({_id: id}, data)
     },

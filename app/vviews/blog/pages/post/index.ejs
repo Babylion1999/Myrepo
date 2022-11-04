@@ -1,47 +1,25 @@
-<div class="col-lg-8 posts-list">
+
+
+
+	
 	<div class="single-post">
+		<% 
+	
+		const pathUpload ="/backend/adminlte/images/articles/";
+	
+		%>
 	   <div class="feature-img">
-		  <img class="img-fluid" src="frontend/assets/img/blog/single_blog_1.png" alt="">
+		  <img class="w-100" src="<%= pathUpload + itemArticle.thumb %>" alt="">
 	   </div>
 	   <div class="blog_details">
-		  <h2>Second divided from form fish beast made every of seas
-			 all gathered us saying he our
-		  </h2>
+		  <h2><%= itemArticle.name %></h2>
 		  <ul class="blog-info-link mt-3 mb-4">
-			 <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+			 <li><a href="#"><i class="fa fa-user"></i> <%= itemArticle.created.user_name %></a></li>
 			 <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
 		  </ul>
-		  <p class="excert">
-			 MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-			 should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-			 fraction of the camp price. However, who has the willpower
-		  </p>
-		  <p>
-			 MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-			 should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-			 fraction of the camp price. However, who has the willpower to actually sit through a
-			 self-imposed MCSE training. who has the willpower to actually
-		  </p>
-		  <div class="quote-wrapper">
-			 <div class="quotes">
-				MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-				should have to spend money on boot camp when you can get the MCSE study materials yourself at
-				a fraction of the camp price. However, who has the willpower to actually sit through a
-				self-imposed MCSE training.
-			 </div>
-		  </div>
-		  <p>
-			 MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-			 should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-			 fraction of the camp price. However, who has the willpower
-		  </p>
-		  <p>
-			 MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-			 should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-			 fraction of the camp price. However, who has the willpower to actually sit through a
-			 self-imposed MCSE training. who has the willpower to actually
-		  </p>
-	   </div>
+		  
+		  <%- itemArticle.content %>
+		  
 	</div>
 	<div class="navigation-top">
 	   <div class="d-sm-flex justify-content-between text-center">
@@ -63,7 +41,7 @@
 				class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
 				<div class="thumb">
 				   <a href="#">
-					  <img class="img-fluid" src="frontend/assets/img/post/preview.png" alt="">
+					  <img class="img-fluid" src="/frontend/assets/img/post/preview.png" alt="">
 				   </a>
 				</div>
 				<div class="arrow">
@@ -93,7 +71,7 @@
 				</div>
 				<div class="thumb">
 				   <a href="#">
-					  <img class="img-fluid" src="frontend/assets/img/post/next.png" alt="">
+					  <img class="img-fluid" src="/frontend/assets/img/post/next.png" alt="">
 				   </a>
 				</div>
 			 </div>
@@ -118,7 +96,7 @@
 		  <div class="single-comment justify-content-between d-flex">
 			 <div class="user justify-content-between d-flex">
 				<div class="thumb">
-				   <img src="frontend/assets/img/comment/comment_1.png" alt="">
+				   <img src="/frontend/assets/img/comment/comment_1.png" alt="">
 				</div>
 				<div class="desc">
 				   <p class="comment">
@@ -144,7 +122,7 @@
 		  <div class="single-comment justify-content-between d-flex">
 			 <div class="user justify-content-between d-flex">
 				<div class="thumb">
-				   <img src="frontend/assets/img/comment/comment_2.png" alt="">
+				   <img src="/frontend/assets/img/comment/comment_2.png" alt="">
 				</div>
 				<div class="desc">
 				   <p class="comment">
@@ -224,4 +202,4 @@
 		  </div>
 	   </form>
 	</div>
- </div>
+	</div>

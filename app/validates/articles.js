@@ -14,8 +14,7 @@ const options = {
 module.exports = {
     validator: (req) => {
         // NAME
-        req.checkBody('name', util.format(notify.ERROR_NAME, options.name.min, options.name.max) )
-            .isLength({ min: options.name.min, max: options.name.max });
+      
          // slug
         req.checkBody('slug', util.format(notify.ERROR_NAME, options.slug.min, options.slug.max) )
         .isLength({ min: options.slug.min, max: options.slug.max })

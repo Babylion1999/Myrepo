@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const validator = require('express-validator');
+
 const session = require('express-session');
 const flash = require('express-flash-notification');
 const expressLayouts = require('express-ejs-layouts');
@@ -37,6 +38,7 @@ mongoose.connect(`mongodb+srv://${databaseConfig.username}:${databaseConfig.pass
 
 var app = express();
 app.use(cookieParser());
+
 app.use(session({
   secret: 'abcnhds',
   resave: false,

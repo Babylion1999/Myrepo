@@ -14,6 +14,8 @@ router.get('/', async function(req, res, next) {
   let itemsTopPost =[];
   let itemsCategory=[];
   let itemsLogo=[];
+  let itemsNews=[];
+  let itemsAll=[];
   
   await MainModel.listItemsFrontend(null, {task: 'list-artical'}).then((items)=>{
     itemsTopPost=items;
@@ -22,12 +24,21 @@ router.get('/', async function(req, res, next) {
   await CategoriesModel.listItemsFrontend(null, {task: 'items-in-menu'}).then((items)=>{
     itemsCategory=items;
   });
+  await MainModel.listItemsFrontend(null, {task: 'items-news'}).then((items)=>{
+    itemsNews=items;
+  });
   await SettingsModel.getLogo(null,{task:'get-logo-header'}).then((logos)=>{
     itemsLogo = logos;
-  })
+  });
+  await MainModel.listItemsFrontend(null, {task: 'items-all-articles'},6).then((items)=>{
+    itemsAll=items;
+    
+  });
+  
   res.render(`${folderView}index`, { 
     layout   : layoutBlog,
     top_post : true,
+    sildebarFilter:false,
     top_weeklyNews: true,
     bottom_weeklyNews: true,
     youtubeArea: true,
@@ -36,7 +47,9 @@ router.get('/', async function(req, res, next) {
     sildebar:true,
     itemsTopPost,
     itemsCategory,
-    itemsLogo
+    itemsNews,
+    itemsLogo,
+    itemsAll
    });
 
 

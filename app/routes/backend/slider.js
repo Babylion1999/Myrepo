@@ -68,10 +68,12 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 		},
 
 	};
-	SliderModel.updateOne({_id: id}, data, (err, result) => {
-		req.flash('success', notify.CHANGE_STATUS_SUCCESS, false);
-		res.redirect(linkIndex);
-	});
+	
+	SliderModel.changeStatus(id,data).then((result)=>{
+		// req.flash('success', notify.CHANGE_STATUS_SUCCESS, false);
+		// res.redirect(linkIndex);
+	})
+	res.send({success:true,id:id,status:status})
 });
 
 // Change status - Multi

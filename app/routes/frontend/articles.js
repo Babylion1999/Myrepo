@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+const articlesModel 		= require(__path_schemas + 'articles');
 const folderView	 = __path_views_blog + 'pages/post/';
 const layoutBlog	 = __path_views_blog + 'frontend_post';
 const ArticlesModel 	= require(__path_services + `backend/articles`);
@@ -11,14 +11,21 @@ const ParamsHelpers = require(__path_helpers + 'params');
 
 
 /* GET home page. */
-router.get('(/:id)?', async function(req, res, next) {
+router.get('/:id', async function(req, res, next) {
 
   let itemsCategory=[];
-  let idArticle 		= ParamsHelpers.getParam(req.params, 'id', '');
-  let itemArticle		= {};
-  console.log(idArticle);
-  // Article Info
-	await ArticlesModel.listItemsFrontend(null, {task: 'nomal'} ).then( (item) => { itemArticle = item; });
+ let idArticle 		= ParamsHelpers.getParam(req.params, 'id', null);
+ 
+  let itemArticle = await articlesModel.findById(idArticle).then((result)=>{
+    return result
+  }).catch((errors)=>{
+    return;
+  });
+  if(!itemArticle) {
+    res.send('page not fount');
+    return;
+  }
+  
   await CategoriesModel.listItemsFrontend(null, {task: 'items-in-menu'}).then((items)=>{
     itemsCategory=items;
     
@@ -34,7 +41,7 @@ router.get('(/:id)?', async function(req, res, next) {
     sildebar:false,
     sildebarFilter: true,
     itemsCategory,
-    idArticle
+    itemArticle
   });
 });
 

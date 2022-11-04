@@ -1,42 +1,32 @@
 <% 
 	
-	const pathUpload ="backend/adminlte/images/articles/";
+    
+    
+	const pathUpload ="/backend/adminlte/images/articles/";
+    const linkPage = `/category/${idCategory}` ;
+    
 	
 %>
+<% include ./../../helpers/pagination %>
 <div class="col-lg-8">
     <div class="row d-flex justify-content-between">
         <div class="col-lg-3 col-md-3">
             <div class="section-tittle mb-30">
-                <h3>Whats New</h3>
+                <h3><%= itemsInCategory[0].category.name%></h3>
             </div>
         </div>
         <div class="col-lg-9 col-md-9">
-            <div class="properties__button">
-                <!--Nav Button  -->                                            
-                <nav>                                                                     
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                       <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">All</a>
-                       <% itemsCategory.forEach((category) => { %>
-                        <a class="nav-item nav-link" id="nav-<%= category.slug %>-tab" data-toggle="tab" href="#nav-<%= category.slug %>" role="tab" aria-controls="nav-<%= category.slug %>" aria-selected="false"><%= category.name %></a>
-                        <% })%>
-                    </div>
-                </nav>
-                
-                <!--End Nav Button  -->
-            </div>
+            
         </div>
     </div>
     <div class="row">
         <div class="col-12">
             <!-- Nav Card -->
-            <div class="tab-content" id="nav-tabContent">
-                <!-- card one -->
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">           
+            <div class="tab-content">
+                <!-- card one -->          
                     <div class="whats-news-caption">
                         <div class="row">
-                            <% itemsAll.forEach((item)=>{ %>
-
-                           
+                            <% itemsInCategory.forEach((item)=>{ %>
                             <div class="col-lg-6 col-md-6">
                                 <div class="single-what-news mb-100">
                                     <div class="what-img">
@@ -44,43 +34,32 @@
                                     </div>
                                     <div class="what-cap">
                                         <span class="color1"><%= item.category.name %></span>
-                                        <h4><a href="#"><%= item.name%></a></h4>
+                                        <h4><a href="/articles/<%= item.id %>"><%= item.name%></a></h4>
                                     </div>
                                 </div>
                             </div>
-                        <% }) %>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card two -->
-                <% itemsCategory.forEach((category) => { %>
-                <div class="tab-pane fade" id="nav-<%= category.slug %>" role="tabpanel" aria-labelledby="nav-<%= category.slug %>-tab">
-                    <div class="whats-news-caption">
-                        <div class="row">
-                            <% itemsAll.forEach((item)=>{ %>
-                            <% if(category.name===item.category.name){%>
-                                
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="single-what-news mb-100">
-                                            <div class="what-img">
-                                                <img src="<%= pathUpload + item.thumb %>" alt="">
-                                            </div>
-                                            <div class="what-cap">
-                                                <span class="color1"><%= item.category.name %></span>
-                                                <h4><a href="#"><%= item.name%></a></h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                
-                            <% } %>
                             <% }) %>
                         </div>
                     </div>
-                </div>
-                <% }) %>
-                
             </div>
         <!-- End Nav Card -->
+        <div class="pagination-area pb-45 text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="single-wrap d-flex justify-content-center">
+                            <nav aria-label="Page navigation example">
+                                <%- paginationHelper(pagination, linkPage, keyword) %>
+                              </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
 </div>
+
+		
+    
+    
