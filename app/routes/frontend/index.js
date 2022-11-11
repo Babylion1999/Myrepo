@@ -5,6 +5,7 @@ router.use('/', require('./home'));
 
 router.use('/articles', require('./articles'));
 router.use('/category', require('./category'));
+router.use('/contact', require('./contact'));
 router.use('/post', require('./articles'));
 router.use('/about', require('./about'));
 

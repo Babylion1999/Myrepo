@@ -1,0 +1,56 @@
+
+<% 
+const collection = "socials";
+const linkPrefix = systemConfig.prefixAdmin + `/${collection}/`;
+%>
+
+<% include ./../../helpers/sectionbox %>
+
+
+<% include ./../../elements/errors %>
+
+<%- locals.flash %>
+
+<div class="card card-info card-outline">
+<form action="<%= linkPrefix %>save/" method="POST" class="mb-0" >
+    <div class="card-body">
+    
+        <div class="form-group row">
+            <label for="facebook" class="col-sm-2 col-form-label text-sm-right required">facebook</label>
+            <div class="col-xs-12 col-sm-8">
+                <input type="text" name="facebook" class="form-control form-control-sm"  value="<%= item.facebook %>" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="twitter" class="col-sm-2 col-form-label text-sm-right required">twitter</label>
+            <div class="col-xs-12 col-sm-8">
+                <input type="text" name="twitter" class="form-control form-control-sm"  value="<%= item.twitter %>" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="instagram" class="col-sm-2 col-form-label text-sm-right required">instagram</label>
+            <div class="col-xs-12 col-sm-8">
+                <input type="text" name="instagram" class="form-control form-control-sm"  value="<%= item.instagram %>" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="pinterest" class="col-sm-2 col-form-label text-sm-right required">pinterest</label>
+            <div class="col-xs-12 col-sm-8">
+                <input type="text" name="pinterest" class="form-control form-control-sm"  value="<%= item.pinterest %>">
+            </div>
+        </div>
+        
+
+        
+        
+    
+    </div>
+    <div class="card-footer">
+        <div class="col-12 col-sm-8 offset-sm-2">
+            <input class="form-control" name="id" value="<%= item.id %>" type="hidden" >
+            <button type="submit" class="btn btn-sm btn-success mr-1"> Submit</button>
+            <a href="<%= linkPrefix %>" class="btn btn-sm btn-danger mr-1"> Cancel</a>
+        </div>
+    </div>
+</form>
+</div>

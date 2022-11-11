@@ -4,7 +4,10 @@ const changeName = "articles";
 const CategoriesModel = require(__path_services + `backend/categories`);
 
 const MainModel 	= require(__path_services + `backend/${changeName}`);
+const HeaderModel 	= require(__path_services + `backend/header`);
+const FooterModel 	= require(__path_services + `backend/footer`);
 const SettingsModel = require(__path_services + `backend/settings`);
+const SocialsModel 	= require(__path_services + `backend/socials`);
 
 const folderView	 = __path_views_blog + 'pages/home/';
 const layoutBlog	 = __path_views_blog + 'frontend';
@@ -24,6 +27,16 @@ router.get('/', async function(req, res, next) {
   await CategoriesModel.listItemsFrontend(null, {task: 'items-in-menu'}).then((items)=>{
     itemsCategory=items;
   });
+  await SocialsModel.listItems({}).then((items)=>{
+    itemsSocials= items;
+  });
+  await HeaderModel.listItems({}).then((items)=>{
+    itemsHeader= items;
+  });
+  await FooterModel.listItems({}).then((items)=>{
+    itemsFooter= items;
+  });
+
   await MainModel.listItemsFrontend(null, {task: 'items-news'}).then((items)=>{
     itemsNews=items;
   });
@@ -34,6 +47,7 @@ router.get('/', async function(req, res, next) {
     itemsAll=items;
     
   });
+ 
   
   res.render(`${folderView}index`, { 
     layout   : layoutBlog,
@@ -47,6 +61,8 @@ router.get('/', async function(req, res, next) {
     sildebar:true,
     itemsTopPost,
     itemsCategory,
+    itemsSocials,
+    itemsFooter,
     itemsNews,
     itemsLogo,
     itemsAll

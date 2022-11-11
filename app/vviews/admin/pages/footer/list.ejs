@@ -1,0 +1,117 @@
+<% include ./../../helpers/filter-status %>
+<% include ./../../helpers/action %>
+<% include ./../../helpers/pagination %>
+<% include ./../../helpers/status %>
+<% include ./../../helpers/highlight %>
+<% include ./../../helpers/source-by %>
+<% include ./../../helpers/sort %>
+<% include ./../../helpers/sectionbox %> 
+
+<% 
+	const collection = "footer";
+	const linkPrefix = systemConfig.prefixAdmin + `/${collection}/`;
+%>
+
+<%- locals.flash %>
+
+<div class="card card-info card-outline">
+	
+	<div class="card-header">
+		<h6 class="card-title">Search & Filter</h6>
+		<div class="card-tools">
+			<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+				<i class="fas fa-minus"></i></button>
+		</div>
+	</div>
+	<div class="card-body">
+		<div class="row justify-content-between">
+			<div class="mb-1">
+				
+				
+			</div>
+			<div class="mb-1">
+				
+				
+			</div>
+			
+
+			<div class="mb-1">
+				
+			</div>
+		</div>
+	</div>
+</div>
+<div class="card card-info card-outline">
+	<div class="card-header">
+		<h4 class="card-title">List</h4>
+		<div class="card-tools">
+			<a href="#" class="btn btn-tool"><i class="fas fa-sync"></i></a>
+			<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fas fa-minus"></i></button>
+		</div>
+	</div>
+	<div class="card-body">
+		<!-- Control -->
+		<form action="" method="post" class="table-responsive" id="zt-form">
+			<%- actionHelper(linkPrefix) %>
+
+			<!-- List Content -->
+		
+			<table class="table table-bordered table-hover text-nowrap btn-table mb-0">
+				<thead>
+					<tr>
+						<th class="text-center">
+							<div class="custom-control custom-checkbox">
+								<input class="custom-control-input cbAll" type="checkbox" id="check-all">
+								<label for="check-all" class="custom-control-label"></label>
+							</div>
+						</th>
+						<th class="text-center">#</th>
+						<th class="text-center">id</th>
+						<th class="text-center"><a href="<%= linkPrefix %>/sort/name/desc">facebook</a></th> 
+						<th class="text-center"><a href="#">twitter</a></th>
+						
+						<th class="text-center">instagram</th>
+						<th class="text-center">pinterest</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% items.forEach( (item, index) => { %>
+						
+						
+						<tr>
+							<td class="text-center">
+								<div class="custom-control custom-checkbox">
+									<input class="custom-control-input" type="checkbox" id="checkbox-<%= item.id %>" name="cid" value="<%= item.id %>">
+									<label for="checkbox-<%= item.id %>" class="custom-control-label"></label>
+								</div>
+							
+							</td>
+							<td class="text-center"><%= index+1 %></td>
+							<td class="text-center">
+								<input type="text" value="<%= item.id %>" class="text-center ">
+							</td>
+							
+							<td class="text-center">
+								<input type="text" value="<%= item.copyright %>" class="text-center ">
+							</td>
+                            <td class="text-center">
+								<input type="text" value="<%= item.content %>" class="text-center ">
+							</td>
+                            <td class="text-center">
+								<input type="text" value="<%= item.logoFooter %>" class="text-center ">
+							</td>
+                            <td class="text-center">
+								<input type="text" value="<%= item.pinterest %>" class="text-center ">
+							</td>
+							
+						</tr>
+						<% }) %>
+					
+					
+					
+				</tbody>
+			</table>
+		</form>
+	</div>
+	
+</div>

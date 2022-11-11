@@ -5,11 +5,8 @@ const linkPrefix = systemConfig.prefixAdmin + `/${collection}/`;
 %>
 
 <% include ./../../helpers/sectionbox %>
-
-
 <% include ./../../elements/errors %>
-
-<%= JSON.stringify(item) %>
+<%- locals.flash %>
 
 <div class="card card-info card-outline">
 <form action="<%= linkPrefix %>save/" method="POST" class="mb-0" >

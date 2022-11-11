@@ -13,7 +13,7 @@ module.exports = {
         return  MainModel
 		.find(objWhere)
         .skip((pagination.currentPage-1) * pagination.totalItemsPerPage)
-		.limit(pagination.totalItemsPerPage)  
+		.limit(pagination.totalItemsPerPage)
         
     },
     updateOne({id,field,value,...restParams} = {}){

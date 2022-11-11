@@ -1,11 +1,14 @@
 <%  
     let arrMenu = [
         
-        {name: 'Dashboard', icon: 'fa-home', link: `${systemConfig.prefixAdmin}/dashboard`},
-        {name: 'Slider', icon:'fa-sliders-h', link: `${systemConfig.prefixAdmin}/slider`},
-        {name: 'Groups-Users', icon: 'fa-layer-group',  link: `#` , isChild : true, children:[{name: 'groups', icon: 'fa-users', link: `${systemConfig.prefixAdmin}/groups`},{name: 'users', icon: 'fa-user', link: `${systemConfig.prefixAdmin}/users`}]},
-        {name: 'Categories-Articles', icon: 'fa-layer-group',  link: `#` , isChild : true, children:[{name: 'Categories', icon:'fa-folder', link: `${systemConfig.prefixAdmin}/categories`},{name: 'Articles', icon: 'fa-newspaper', link: `${systemConfig.prefixAdmin}/articles`, },]},
-        {name: 'Setting', icon:'fa-wrench', link: `${systemConfig.prefixAdmin}/settings`},
+        {name: 'Dashboard', icon: 'fas fa-home', link: `${systemConfig.prefixAdmin}/dashboard`},
+        {name: 'Slider', icon:'fas fa-sliders-h', link: `${systemConfig.prefixAdmin}/slider`},
+        {name: 'Groups-Users', icon: 'fas fa-layer-group',  link: `#` , isChild : true, children:[{name: 'groups', icon: 'fa-users', link: `${systemConfig.prefixAdmin}/groups`},{name: 'users', icon: 'fa-user', link: `${systemConfig.prefixAdmin}/users`}]},
+        {name: 'Categories-Articles', icon: 'fas fa-layer-group',  link: `#` , isChild : true, children:[{name: 'Categories', icon:'fa-folder', link: `${systemConfig.prefixAdmin}/categories`},{name: 'Articles', icon: 'fa-newspaper', link: `${systemConfig.prefixAdmin}/articles`, },]},
+        {name: 'Setting', icon:' fas fa-wrench', link: `${systemConfig.prefixAdmin}/settings`},
+        {name: 'Socials',icon:'fas fa-share-alt-square', link: `${systemConfig.prefixAdmin}/socials/form/6367d3c8457c060bacd947af`},
+        {name: 'Header',icon:'fas fa-heading', link: `${systemConfig.prefixAdmin}/header/form/6369e5dd34be243164f97ac0`},
+        {name: 'Footer',icon:'fas fa-terminal', link: `${systemConfig.prefixAdmin}/footer/form/636b6cd119a28f09eb90ce19`}
     ];
     let xhtmlMenu = '';
     arrMenu.forEach(menu => {
@@ -21,7 +24,7 @@
             })
             xhtmlMenu += `<li class="nav-item  ">
                 <a href="${menu.link}" class="nav-link" data-active="${menu.name.toLowerCase()}">
-                    <i class="nav-icon fas ${menu.icon}"></i>
+                    <i class="nav-icon  ${menu.icon}"></i>
                     <p>${menu.name}</p>
                     <i class="fas fa-angle-left right"></i>
                 </a>
