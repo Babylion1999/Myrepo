@@ -5,6 +5,9 @@ const folderView	 = __path_views_blog + 'pages/post/';
 const layoutBlog	 = __path_views_blog + 'frontend_post';
 const ArticlesModel 	= require(__path_services + `backend/articles`);
 const CategoriesModel = require(__path_services + `backend/categories`);
+const SocialsModel 	= require(__path_services + `backend/socials`);
+const HeaderModel 	= require(__path_services + `backend/header`);
+const FooterModel 	= require(__path_services + `backend/footer`);
 const ParamsHelpers = require(__path_helpers + 'params');
 
 
@@ -12,8 +15,10 @@ const ParamsHelpers = require(__path_helpers + 'params');
 
 /* GET home page. */
 router.get('/:id', async function(req, res, next) {
-
+  let itemsNews=[];
   let itemsCategory=[];
+  let itemsSocials=[];
+  let itemsHeader=[];
  let idArticle 		= ParamsHelpers.getParam(req.params, 'id', null);
  
   let itemArticle = await articlesModel.findById(idArticle).then((result)=>{
@@ -25,7 +30,19 @@ router.get('/:id', async function(req, res, next) {
     res.send('page not fount');
     return;
   }
-  
+  await SocialsModel.listItems({}).then((items)=>{
+    itemsSocials= items;
+  });
+  await ArticlesModel.listItemsFrontend(null, {task: 'items-news'}).then((items)=>{
+    itemsNews=items;
+  });
+  await HeaderModel.listItems({}).then((items)=>{
+    itemsHeader= items;
+  });
+  await FooterModel.listItems({}).then((items)=>{
+    itemsFooter= items;
+  });
+
   await CategoriesModel.listItemsFrontend(null, {task: 'items-in-menu'}).then((items)=>{
     itemsCategory=items;
     
@@ -41,7 +58,11 @@ router.get('/:id', async function(req, res, next) {
     sildebar:false,
     sildebarFilter: true,
     itemsCategory,
-    itemArticle
+    itemArticle,
+    itemsNews,
+    itemsSocials,
+    itemsHeader,
+    itemsFooter
   });
 });
 

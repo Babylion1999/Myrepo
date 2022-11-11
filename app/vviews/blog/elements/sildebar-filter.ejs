@@ -45,7 +45,7 @@
             <div class="media post_item">
                <img src="<%= pathUpload + item.thumb %> " class="w-50" alt="post">
                <div class="media-body">
-                  <a href="/articles/<% item.id %>">
+                  <a href="/articles/<%= item.id %>">
                      <h3><%= item.name %></h3>
                   </a>
                   <p><%= moment(item.created.time).format("MMM Do YY") %></p>

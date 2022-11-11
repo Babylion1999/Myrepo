@@ -19,8 +19,10 @@ router.get('/', async function(req, res, next) {
   let itemsLogo=[];
   let itemsNews=[];
   let itemsAll=[];
-  
-  await MainModel.listItemsFrontend(null, {task: 'list-artical'}).then((items)=>{
+  let itemsSocials=[];
+  let itemsHeader=[];
+  let itemsFooter=[];
+    await MainModel.listItemsFrontend(null, {task: 'list-artical'}).then((items)=>{
     itemsTopPost=items;
     
   });
@@ -48,7 +50,7 @@ router.get('/', async function(req, res, next) {
     
   });
  
-  
+  // dgsgvgdjvsdj
   res.render(`${folderView}index`, { 
     layout   : layoutBlog,
     top_post : true,
@@ -62,14 +64,13 @@ router.get('/', async function(req, res, next) {
     itemsTopPost,
     itemsCategory,
     itemsSocials,
+    itemsHeader,
     itemsFooter,
     itemsNews,
     itemsLogo,
     itemsAll
    });
 
-
-  
 });
 
 module.exports = router;
