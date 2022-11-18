@@ -4,8 +4,7 @@ const changeName = "articles";
 const CategoriesModel = require(__path_services + `backend/categories`);
 
 const MainModel 	= require(__path_services + `backend/${changeName}`);
-const HeaderModel 	= require(__path_services + `backend/header`);
-const FooterModel 	= require(__path_services + `backend/footer`);
+
 const SettingsModel = require(__path_services + `backend/settings`);
 const SocialsModel 	= require(__path_services + `backend/socials`);
 
@@ -19,25 +18,15 @@ router.get('/', async function(req, res, next) {
   let itemsLogo=[];
   let itemsNews=[];
   let itemsAll=[];
-  let itemsSocials=[];
-  let itemsHeader=[];
-  let itemsFooter=[];
+  
+ 
     await MainModel.listItemsFrontend(null, {task: 'list-artical'}).then((items)=>{
     itemsTopPost=items;
     
   });
-  await CategoriesModel.listItemsFrontend(null, {task: 'items-in-menu'}).then((items)=>{
-    itemsCategory=items;
-  });
-  await SocialsModel.listItems({}).then((items)=>{
-    itemsSocials= items;
-  });
-  await HeaderModel.listItems({}).then((items)=>{
-    itemsHeader= items;
-  });
-  await FooterModel.listItems({}).then((items)=>{
-    itemsFooter= items;
-  });
+ 
+  
+ 
 
   await MainModel.listItemsFrontend(null, {task: 'items-news'}).then((items)=>{
     itemsNews=items;
@@ -62,10 +51,6 @@ router.get('/', async function(req, res, next) {
     paginationArea: true,
     sildebar:true,
     itemsTopPost,
-    itemsCategory,
-    itemsSocials,
-    itemsHeader,
-    itemsFooter,
     itemsNews,
     itemsLogo,
     itemsAll

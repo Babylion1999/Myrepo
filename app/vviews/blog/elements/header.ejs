@@ -1,5 +1,5 @@
 <header>
-   
+  
     <!-- Header Start -->
        <div class="header-area">
             <div class="main-header ">
@@ -31,7 +31,7 @@
                             <!-- Logo -->
                             <div class="col-xl-3 col-lg-3 col-md-3">
                                 <div class="logo">
-                                    <a href="index.html"><img src="/backend/adminlte/images/header/<%= itemsHeader[0].logoHeader%>" alt=""></a>
+                                    <a href="index.html"><img src="/backend/adminlte/images/settings/<%= JSON.parse(itemsHeader[0].header).logoHeader %>" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-9 col-lg-9 col-md-9">
@@ -48,14 +48,14 @@
                             <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
                                 <!-- sticky -->
                                     <div class="sticky-logo">
-                                        <a href="index.html"><img src="/backend/adminlte/images/header/<%= itemsHeader[0].logoHeader%>" alt=""></a>
+                                        <a href="index.html"><img src="/backend/adminlte/images/settings/<%= JSON.parse(itemsHeader[0].header).logoHeader %>" alt=""></a>
                                     </div>
                                 <!-- Main-menu -->
                                 <div class="main-menu d-none d-md-block">
                                     <nav>                  
                                         <ul id="navigation">    
                                             <li><a href="/">Home</a></li>
-                                            <li><a href="/category">Category</a>
+                                            <li><a href="#">Category</a>
                                                 <ul class="submenu">
                                                     <% itemsCategory.forEach((category) => { %>
                                                     <li><a href="/category/<%= category.id %>"><%= category.name %></a></li>
@@ -63,9 +63,8 @@
                                                 </ul>
                                             </li>
                                             <li><a href="/about">About</a></li>
-                                            <li><a href="/latest_news">Latest News</a></li>
                                             <li><a href="/contact">Contact</a></li>
-                                            <li><a href="#">Pages</a>
+                                           
                                                 
                                             </li>
                                         </ul>

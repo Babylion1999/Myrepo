@@ -22,8 +22,6 @@ let createAlias =(value)=>{
     //Xóa các ký tự gạch ngang ở đầu và cuối
     slug = '@' + slug + '@';
     slug = slug.replace(/\@\-|\-\@|\@/gi, '');
-    
-    
     return slug
 }
 

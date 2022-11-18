@@ -2,34 +2,19 @@ const util  = require('util');
 const notify= require(__path_configs + 'notify');
 
 const options = {
-    name: { min: 5, max: 100 },
-    slug: { min: 3, max: 100 },
-    ordering: { min: 0, max: 100 },
-    status: { value: 'novalue' },
-    special: { value: 'novalue' },
-    category_id: {value: 'allvalue'},
-    
+    copyright: { min: 5, max: 100 },
+    content: {min: 5, max: 500}, 
 }
 
 module.exports = {
     validator: (req) => {
        
-         // slug
-        req.checkBody('slug', util.format(notify.ERROR_NAME, options.slug.min, options.slug.max) )
-        .isLength({ min: options.slug.min, max: options.slug.max })
-
-        // ORDERING
-        req.checkBody('ordering', util.format(notify.ERROR_ORDERING, options.ordering.min, options.ordering.max))
-            .isInt({gt: options.ordering.min, lt: options.ordering.max});
-        
-        // STATUS
-        req.checkBody('status', notify.ERROR_STATUS)
-            .isNotEqual(options.status.value);
-        //special
-        req.checkBody('special', notify.ERROR_STATUS)
-            .isNotEqual(options.special.value);
-            //special
-        req.checkBody('category_id', notify.ERROR_STATUS)
-        .isNotEqual(options.category_id.value);
+         // copyright
+        req.checkBody('copyright', util.format(notify.ERROR_COPYRIGHT, options.copyright.min, options.copyright.max) )
+        .isLength({ min: options.copyright.min, max: options.copyright.max })
+        //content
+        req.checkBody('content', util.format(notify.ERROR_CONTENT, options.content.min, options.content.max) )
+        .isLength({ min: options.content.min, max: options.content.max })
+       
     }
 }

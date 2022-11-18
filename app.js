@@ -25,8 +25,10 @@ global.__path_schemas   = __path_app + pathConfig.folder_schemas + '/';
 global.__path_services   = __path_app + pathConfig.folder_services + '/';
 global.__path_validates = __path_app + pathConfig.folder_validates + '/';
 global.__path_views     = __path_app + pathConfig.folder_views + '/';
+global.__path_middleware  = __path_app + pathConfig.folder_middleware + '/';
 global.__path_views_admin     = __path_views + pathConfig.folder_module_admin + '/';
 global.__path_views_blog     = __path_views + pathConfig.folder_module_blog + '/';
+
 
 
 const systemConfig = require(__path_configs + 'system');

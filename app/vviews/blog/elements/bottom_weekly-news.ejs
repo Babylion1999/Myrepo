@@ -3,6 +3,7 @@
 		const pathUpload ="/backend/adminlte/images/articles/";
 	
 		%>
+
 <div class="weekly2-news-area  weekly2-pading gray-bg">
     
     <div class="container">
@@ -26,7 +27,7 @@
                             <div class="weekly2-caption">
                                 <span class="color1"><%= item.category.name %></span>
                                 <p><%= moment(item.created.time).format("MMM Do YY") %></p>
-                                <h4><a href="#"><%= item.name%></a></h4>
+                                <h4><a href="/articles/<%= item.id %>"><%= item.name%></a></h4>
                             </div>
                         </div>  
                         <% }) %>

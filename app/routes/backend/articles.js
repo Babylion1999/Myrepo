@@ -186,9 +186,14 @@ router.get(('/form(/:id)?'), async(req, res, next) => {
 });
 // SAVE = ADD EDIT
 router.post('/save', async(req, res, next) => {
+	
      uploadThumb(req, res, async function(errUpload) {
 	req.body = JSON.parse(JSON.stringify(req.body));
+	
+	
 	let item = Object.assign(req.body);
+	
+	
     let taskCurrent = (typeof item !== "undefined" && item.id !== "") ? "edit" : "add";
      ValidateArticles.validator(req);
 	let errors = req.validationErrors() !== false ? req.validationErrors() : [];
@@ -198,6 +203,7 @@ router.post('/save', async(req, res, next) => {
          if(errUpload.code=='LIMIT_FILE_SIZE'){errors.push({param: 'thumb',msg:notify.ERROR_FILE_LARGE})}
 			
     }else if(req.file==undefined && taskCurrent=="add"){
+		
         errors.push({param: 'thumb',msg:notify.ERROR_FILE_REQUIRE})
     }
 	if(errors.length > 0) { 
@@ -216,6 +222,7 @@ router.post('/save', async(req, res, next) => {
         let massage= (taskCurrent=="edit") ? notify.EDIT_SUCCESS : notify.ADD_SUCCESS;
          if(req.file!=undefined){
             item.thumb= req.file.filename;
+			
             if(taskCurrent==="edit") 
             {
                  let path= 'public/backend/adminlte/images/articles/'+ item.image_old;
@@ -224,6 +231,7 @@ router.post('/save', async(req, res, next) => {
         }else{item.thumb=undefined;
             if(taskCurrent==="edit"){item.thumb=item.image_old;}
         };
+		
         MainModel.saveItems(item,{task:taskCurrent}).then((result)=>{
             req.flash('success', massage, false);
             res.redirect(linkIndex);

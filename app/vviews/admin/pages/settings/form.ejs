@@ -3,9 +3,11 @@
 const collection="settings" ; 
 const linkPrefix=systemConfig.prefixAdmin + `/${collection}/`; 
 const folderUpload 	= `uploads/${collection}/`;
+const pathUpload ="backend/adminlte/images/settings/";
 
 %>
 <%- locals.flash %>
+<% include ./../../elements/errors %>
 	<div class="card card-info card-outline">
 		<form action="<%= linkPrefix %>save/" method="POST" class="mb-0" name="form-upload" enctype="multipart/form-data">
 			<div class="card-body">
@@ -32,9 +34,15 @@ const folderUpload 	= `uploads/${collection}/`;
 									<div class="form-group row">
 										<label for="logoHeader" class="col-sm-2 col-form-label text-sm-right required">Logo</label>
 										<div class="col-xs-12 col-sm-8">
-                                            <input type="file" name="logoHeader" class="form-control form-control-sm" >
+                                            <input type="file" name="logoHeader" class="form-control form-control-sm">
                                         </div>
 									</div>
+									<% if(item.id !== undefined && item.id !== ''){ %>
+										<div class="form-group row">
+											<label for="thumb" class="col-sm-2 col-form-label text-sm-right required">Logo review</label>
+											<img src="<%= pathUpload + item.logoHeader %>" alt="" style="height:50px;">
+										</div>
+										<% } %>
 								</div>
 								<div class="tab-pane fade" id="footer-settings" role="tabpanel"
 									aria-labelledby="footer-settings-tab">
@@ -42,29 +50,28 @@ const folderUpload 	= `uploads/${collection}/`;
 									<div class="form-group row">
 										<label for="name" class="col-sm-2 col-form-label text-sm-right required">Copyright</label>
 										<div class="col-xs-12 col-sm-8">
-											<input type="text" name="copyright" value="" class="form-control form-control-sm ">
-											
+											<input type="text" name="copyright" value="<%= item.copyright %>" class="form-control form-control-sm " readonly>
 										</div>
 									</div>
-
 									<div class="form-group row">
-										<label for="description" class="col-sm-2 col-form-label text-sm-right required">Content</label>
-										<div class="col-xs-12 col-sm-8">
-											<textarea id="editor" name="content"></textarea>
-											
+										<label for="content" class="col-sm-2 col-form-label text-sm-right required">Content</label>
+										<div class="col-xs-12 col-sm-8 " >
+											<textarea id="id_content" name="content" readonly><%= item.content %></textarea>
 										</div>
 									</div>
-
 									<div class="form-group row">
 										<label for="logoFooter" class="col-sm-2 col-form-label text-sm-right required">Logo</label>
 										<div class="col-xs-12 col-sm-8">
-											<div class="custom-file">
-												<input id="logoFooter" class="form-control custom-file-input " type="file" name="logoFooter">
-												<label class="custom-file-label" for="imgInp">Choose file</label>
-												
-											</div>
-										</div>
+                                            <input type="file" name="logoFooter" class="form-control form-control-sm" >
+                                        </div>
 									</div>
+									<% if(item.id !== undefined && item.id !== ''){ %>
+										<div class="form-group row">
+											<label for="thumb" class="col-sm-2 col-form-label text-sm-right required">Logo review</label>
+											<img src="<%= pathUpload + item.logoFooter %>" alt="" style="height:50px;">
+										</div>
+										<% } %>
+									
 
 									<div class="form-group row">
 										<div class="col-sm-2 col-form-label"></div>
@@ -82,12 +89,13 @@ const folderUpload 	= `uploads/${collection}/`;
 			</div>
 			<div class="card-footer">
 				<div class="col-12 col-sm-8 offset-sm-2">
-					<input class="form-control" name="id" value="" type="hidden">
+					<input class="form-control" name="id" value="<%= item.id %>" type="hidden">
+					
 
-					<input name="image_header_old" value="" type="hidden" />
+					<input name="image_header_old" value="<%= item.logoHeader %>" type="hidden" />
 					<input name="image_header_uploaded" value="" type="hidden" id="image_header_uploaded" />
 
-					<input name="image_footer_old" value="" type="hidden" />
+					<input name="image_footer_old" value="<%= item.logoFooter %>" type="hidden" />
 					<input name="image_footer_uploaded" value="" type="hidden" id="image_footer_uploaded" />
 
 					<input type="hidden" name="name" value="">
